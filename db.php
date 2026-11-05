@@ -1,11 +1,10 @@
 <?php
-session_start();
 
-$host = getenv("DB_HOST");
-$user = getenv("DB_USER");
-$password = getenv("DB_PASSWORD");
-$database = getenv("DB_NAME");
-$port = (int)(getenv("DB_PORT") ?: 3306);
+$host = "YOUR_DATABASE_HOST";
+$user = "YOUR_DATABASE_USERNAME";
+$password = "YOUR_DATABASE_PASSWORD";
+$database = "YOUR_DATABASE_NAME";
+$port = 3306;
 
 $conn = new mysqli(
     $host,
@@ -16,15 +15,7 @@ $conn = new mysqli(
 );
 
 if ($conn->connect_error) {
-    error_log("Database connection failed: " .
-        $conn->connect_error);
-    http_response_code(500);
-    exit("Database connection error.");
+    die("Database connection failed: " . $conn->connect_error);
 }
 
-$conn->set_charset("utf8mb4");
-
-if (!isset($_SESSION["cart"])) {
-    $_SESSION["cart"] = [];
-}
 ?>
