@@ -1,10 +1,10 @@
 <?php
 
-$host = "YOUR_DATABASE_HOST";
-$user = "YOUR_DATABASE_USERNAME";
-$password = "YOUR_DATABASE_PASSWORD";
-$database = "YOUR_DATABASE_NAME";
-$port = 3306;
+$host = getenv("DB_HOST");
+$user = getenv("DB_USER");
+$password = getenv("DB_PASS");
+$database = getenv("DB_NAME");
+$port = (int)getenv("DB_PORT");
 
 $conn = new mysqli(
     $host,
@@ -15,7 +15,7 @@ $conn = new mysqli(
 );
 
 if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
+    die("Database connection failed");
 }
 
 ?>
